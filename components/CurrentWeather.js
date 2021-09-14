@@ -6,7 +6,6 @@ import {
   Icon,
   Flex,
   VStack,
-  HStack,
 } from "@chakra-ui/react";
 import useWeatherData from "../hooks/useWeatherData";
 import { MdLocationOn } from "react-icons/md";
@@ -47,14 +46,18 @@ export default function CurrentWeather() {
               </Flex>
             </VStack>
 
-            <VStack alignItems="flex-end" alignSelf="self-start">
-              <Text m="0 !important" fontSize="2xl" opacity="0.85">{`${
+            <VStack
+              alignItems="flex-end"
+              alignSelf="self-start"
+              fontWeight="light"
+            >
+              <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
                 current && current.weather[0].main
               }`}</Text>
-              <Text m="0 !important" fontSize="2xl" opacity="0.85">{`${
+              <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
                 current && current.main.temp_max
               }° / ${current && current.main.temp_min}°`}</Text>
-              <Text m="0 !important" fontSize="2xl" opacity="0.85">
+              <Text m="0 !important" fontSize="2xl" opacity="0.9">
                 Feels like{" "}
                 {`${current && current.main.feels_like}°
       `}
