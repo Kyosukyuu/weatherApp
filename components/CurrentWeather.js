@@ -7,8 +7,8 @@ import {
   Flex,
   VStack,
 } from "@chakra-ui/react";
-import useWeatherData from "../hooks/useWeatherData";
 import { MdLocationOn } from "react-icons/md";
+import useWeatherData from "../hooks/useWeatherData";
 import { useContext } from "react";
 import { WeatherContext } from "../context/WeatherContext";
 
@@ -19,19 +19,20 @@ export default function CurrentWeather() {
     <>
       {current && current.cod !== "404" && (
         <Box
+          as="section"
           color="white"
+          bg="gray.700"
           boxShadow="lg"
           rounded="base"
-          bg="gray.700"
           p={4}
-          mt={5}
-          maxWidth="650px"
+          w="100%"
+          flex="0.6"
         >
           <Flex justifyContent="space-between" flexWrap="wrap">
             <VStack alignItems="flex-start">
               <Flex alignItems="center">
                 <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
-                <Heading>
+                <Heading fontSize="4xl">
                   {`${current && current.name}, ${
                     current && current.sys.country
                   }`}
@@ -53,7 +54,7 @@ export default function CurrentWeather() {
 
             <VStack
               alignItems="flex-end"
-              alignSelf="self-start"
+              alignSelf="stretch"
               fontWeight="light"
             >
               <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
