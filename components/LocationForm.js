@@ -19,7 +19,7 @@ import { MdSearch } from "react-icons/md";
 
 export default function LocationForm() {
   const { setLocation, setUnitMode } = useContext(WeatherContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     setLocation(data.location);
@@ -46,6 +46,7 @@ export default function LocationForm() {
                 value="imperial"
                 id="imperial"
                 name="imperial"
+                colorScheme="blue"
                 {...register("units", { required: true })}
               >
                 Imperial
@@ -54,6 +55,7 @@ export default function LocationForm() {
                 value="metric"
                 id="metric"
                 name="metric"
+                colorScheme="green"
                 {...register("units", { required: true })}
               >
                 Metric
