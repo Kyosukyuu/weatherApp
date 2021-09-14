@@ -42,7 +42,9 @@ export default function CurrentWeather() {
                   }
                   ml={-4}
                 />
-                <Text fontSize="6xl">{`${current && current.main.temp}°`}</Text>
+                <Text fontSize="6xl">{`${
+                  current && Math.round(current.main.temp)
+                }°`}</Text>
               </Flex>
             </VStack>
 
@@ -55,11 +57,11 @@ export default function CurrentWeather() {
                 current && current.weather[0].main
               }`}</Text>
               <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
-                current && current.main.temp_max
-              }° / ${current && current.main.temp_min}°`}</Text>
+                current && Math.round(current.main.temp_max)
+              }° / ${Math.round(current && current.main.temp_min)}°`}</Text>
               <Text m="0 !important" fontSize="2xl" opacity="0.9">
                 Feels like{" "}
-                {`${current && current.main.feels_like}°
+                {`${current && Math.round(current.main.feels_like)}°
       `}
               </Text>
             </VStack>
