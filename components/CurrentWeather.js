@@ -9,12 +9,19 @@ import {
 } from "@chakra-ui/react";
 import { MdLocationOn } from "react-icons/md";
 import useWeatherData from "../hooks/useWeatherData";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { WeatherContext } from "../context/WeatherContext";
+import { DateTime } from "luxon";
 
 export default function CurrentWeather() {
   const { unitMode } = useContext(WeatherContext);
   const { current } = useWeatherData();
+  const [currentTime, setCurrentTime] = useState();
+
+  useEffect(() => {
+    if (current) setCurrentTime(DateTime.fromMillis(current.dt * 1000));
+  }, [current]);
+
   return (
     <>
       {current && current.cod !== "404" && (
@@ -26,17 +33,29 @@ export default function CurrentWeather() {
           rounded="base"
           p={4}
           w="100%"
-          flex="0.6"
+          flex="1"
         >
           <Flex justifyContent="space-between" flexWrap="wrap">
             <VStack alignItems="flex-start">
               <Flex alignItems="center">
+                <Flex></Flex>
                 <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
                 <Heading fontSize="4xl">
                   {`${current && current.name}, ${
                     current && current.sys.country
                   }`}
                 </Heading>
+                <Text opacity="0.7" fontWeight="light">
+                  {currentTime && currentTime.weekdayShort},{" "}
+                  {currentTime && currentTime.monthLong}{" "}
+                  {currentTime && currentTime.day}{" "}
+                  {currentTime && currentTime.hour > 12
+                    ? currentTime && currentTime.hour - 12
+                    : currentTime && currentTime.hour}
+                  :{currentTime && currentTime.minute}{" "}
+                  {currentTime && Number(currentTime.hour) > 12 ? "PM" : "AM"}
+                </Text>
+                {console.log(currentTime)}
               </Flex>
               <Flex m="0 !important">
                 <Image

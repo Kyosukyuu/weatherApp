@@ -15,74 +15,40 @@ export default function CurrentInfo() {
   return (
     <>
       {current && (
-        <>
-          <Box
-            as="section"
-            rounded="base"
-            boxShadow="lg"
-            color="white"
-            bg="gray.700"
-            flex="0.4"
-            w="100%"
-            p={4}
-          >
-            <VStack divider={<StackDivider borderColor="gray.200" as="hr" />}>
-              <CurrentInfoItem
-                icon={MdImportExport}
-                title="Pressure"
-                text={`${(current.main.pressure / 30.031992783659565).toFixed(
-                  2
-                )} in`}
-              />
+        <Box
+          as="section"
+          rounded="base"
+          boxShadow="lg"
+          color="white"
+          bg="gray.700"
+          flex="0.5"
+          w="100%"
+          p={4}
+        >
+          <VStack divider={<StackDivider borderColor="gray.200" as="hr" />}>
+            <CurrentInfoItem
+              icon={MdImportExport}
+              title="Pressure"
+              text={`${(current.main.pressure / 30.031992783659565).toFixed(
+                2
+              )} in`}
+            />
 
-              <CurrentInfoItem
-                icon={WiHumidity}
-                title="Humidity"
-                text={`${current.main.humidity}%`}
-              />
+            <CurrentInfoItem
+              icon={WiHumidity}
+              title="Humidity"
+              text={`${current.main.humidity}%`}
+            />
 
-              <CurrentInfoItem
-                icon={WiStrongWind}
-                title="Wind"
-                text={`${Math.round(current.wind.speed)} ${
-                  unitMode === "imperial" ? "mph" : "mps"
-                }`}
-              />
-            </VStack>
-          </Box>
-          {/* <Box
-            rounded="base"
-            boxShadow="lg"
-            bg="gray.700"
-            flex="0.4"
-            p={4}
-            color="white"
-          >
-            <VStack divider={<StackDivider borderColor="gray.200" />}>
-              <CurrentInfoItem
-                icon={MdImportExport}
-                title="Pressure"
-                text={`${(current.main.pressure / 30.031992783659565).toFixed(
-                  2
-                )} in`}
-              />
-
-              <CurrentInfoItem
-                icon={WiHumidity}
-                title="Humidity"
-                text={`${current.main.humidity}%`}
-              />
-
-              <CurrentInfoItem
-                icon={WiStrongWind}
-                title="Wind"
-                text={`${Math.round(current.wind.speed)} ${
-                  unitMode === "imperial" ? "mph" : "mps"
-                }`}
-              />
-            </VStack>
-          </Box> */}
-        </>
+            <CurrentInfoItem
+              icon={WiStrongWind}
+              title="Wind"
+              text={`${Math.round(current.wind.speed)} ${
+                unitMode === "imperial" ? "mph" : "mps"
+              }`}
+            />
+          </VStack>
+        </Box>
       )}
     </>
   );
