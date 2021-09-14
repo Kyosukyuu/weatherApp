@@ -9,8 +9,11 @@ import {
 } from "@chakra-ui/react";
 import useWeatherData from "../hooks/useWeatherData";
 import { MdLocationOn } from "react-icons/md";
+import { useContext } from "react";
+import { WeatherContext } from "../context/WeatherContext";
 
 export default function CurrentWeather() {
+  const { unitMode } = useContext(WeatherContext);
   const { current } = useWeatherData();
   return (
     <>
@@ -44,7 +47,7 @@ export default function CurrentWeather() {
                 />
                 <Text fontSize="6xl">{`${
                   current && Math.round(current.main.temp)
-                }°`}</Text>
+                }°${unitMode === "imperial" ? "F" : "C"}`}</Text>
               </Flex>
             </VStack>
 
