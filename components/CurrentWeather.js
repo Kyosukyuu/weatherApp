@@ -1,0 +1,68 @@
+import {
+  Box,
+  Heading,
+  Text,
+  Image,
+  Icon,
+  Flex,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
+import useWeatherData from "../hooks/useWeatherData";
+import { MdLocationOn } from "react-icons/md";
+
+export default function CurrentWeather() {
+  const { current } = useWeatherData();
+  return (
+    <>
+      {current && current.cod !== "404" && (
+        <Box
+          color="white"
+          boxShadow="lg"
+          rounded="base"
+          bg="gray.700"
+          p={4}
+          mt={5}
+          maxWidth="650px"
+        >
+          <Flex justifyContent="space-between" flexWrap="wrap">
+            <VStack alignItems="flex-start">
+              <Flex alignItems="center">
+                <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
+                <Heading>
+                  {`${current && current.name}, ${
+                    current && current.sys.country
+                  }`}
+                </Heading>
+              </Flex>
+              <Flex m="0 !important">
+                <Image
+                  src={
+                    current &&
+                    `https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`
+                  }
+                  ml={-4}
+                />
+                <Text fontSize="6xl">{`${current && current.main.temp}°`}</Text>
+              </Flex>
+            </VStack>
+
+            <VStack alignItems="flex-end" alignSelf="self-start">
+              <Text m="0 !important" fontSize="2xl" opacity="0.85">{`${
+                current && current.weather[0].main
+              }`}</Text>
+              <Text m="0 !important" fontSize="2xl" opacity="0.85">{`${
+                current && current.main.temp_max
+              }° / ${current && current.main.temp_min}°`}</Text>
+              <Text m="0 !important" fontSize="2xl" opacity="0.85">
+                Feels like{" "}
+                {`${current && current.main.feels_like}°
+      `}
+              </Text>
+            </VStack>
+          </Flex>
+        </Box>
+      )}
+    </>
+  );
+}
