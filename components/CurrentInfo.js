@@ -21,7 +21,7 @@ export default function CurrentInfo() {
           boxShadow="lg"
           color="white"
           bg="gray.700"
-          flex="0.5"
+          flex="0.5 1 20%"
           w="100%"
           p={4}
         >

@@ -2,9 +2,12 @@ import { Box, VStack, StackDivider } from "@chakra-ui/react";
 import useWeatherData from "../hooks/useWeatherData";
 import CurrentInfoItem from "./CurrentInfoItem";
 import { MdInvertColors, MdWbSunny } from "react-icons/md";
+import { WiSunrise, WiSunset } from "react-icons/wi";
+import { DateTime } from "luxon";
 
 export default function CurrentInfo2() {
   const { forecast } = useWeatherData();
+  console.log(forecast);
   return (
     <>
       {forecast && (
@@ -16,7 +19,7 @@ export default function CurrentInfo2() {
           rounded="base"
           p={4}
           w="100%"
-          flex="1"
+          flex="0.5 1 20%"
         >
           <VStack divider={<StackDivider borderColor="gray.200" as="hr" />}>
             <CurrentInfoItem
@@ -28,6 +31,44 @@ export default function CurrentInfo2() {
               icon={MdWbSunny}
               title="UV Index"
               text={`${Math.round(forecast.current.uvi)} of 10`}
+            />
+            <CurrentInfoItem
+              icon={WiSunrise}
+              title="Sunrise"
+              text={`${
+                DateTime.fromMillis(forecast.current.sunrise * 1000).hour > 12
+                  ? DateTime.fromMillis(forecast.current.sunrise * 1000).hour -
+                    12
+                  : DateTime.fromMillis(forecast.current.sunrise * 1000).hour
+              }:${
+                DateTime.fromMillis(forecast.current.sunrise * 1000).minute < 10
+                  ? "0" +
+                    DateTime.fromMillis(forecast.current.sunrise * 1000).minute
+                  : DateTime.fromMillis(forecast.current.sunrise * 1000).minute
+              } ${
+                DateTime.fromMillis(forecast.current.sunrise * 1000).hour > 12
+                  ? "PM"
+                  : "AM"
+              }`}
+            />
+            <CurrentInfoItem
+              icon={WiSunset}
+              title="Sunset"
+              text={`${
+                DateTime.fromMillis(forecast.current.sunset * 1000).hour > 12
+                  ? DateTime.fromMillis(forecast.current.sunset * 1000).hour -
+                    12
+                  : DateTime.fromMillis(forecast.current.sunset * 1000).hour
+              }:${
+                DateTime.fromMillis(forecast.current.sunset * 1000).minute < 10
+                  ? "0" +
+                    DateTime.fromMillis(forecast.current.sunset * 1000).minute
+                  : DateTime.fromMillis(forecast.current.sunset * 1000).minute
+              } ${
+                DateTime.fromMillis(forecast.current.sunset * 1000).hour > 12
+                  ? "PM"
+                  : "AM"
+              }`}
             />
           </VStack>
         </Box>

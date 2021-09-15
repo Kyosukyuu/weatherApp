@@ -33,7 +33,7 @@ export default function CurrentWeather() {
           rounded="base"
           p={4}
           w="100%"
-          flex="1"
+          flex="1 1 40%"
         >
           <Flex justifyContent="space-between">
             <VStack alignItems="flex-start">
@@ -41,9 +41,7 @@ export default function CurrentWeather() {
                 <Flex alignItems="center">
                   <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
                   <Heading fontSize="4xl">
-                    {`${current && current.name}, ${
-                      current && current.sys.country
-                    }`}
+                    {`${current.name}, ${current.sys.country}`}
                   </Heading>
                 </Flex>
 
@@ -54,7 +52,10 @@ export default function CurrentWeather() {
                   {currentTime && currentTime.hour > 12
                     ? currentTime && currentTime.hour - 12
                     : currentTime && currentTime.hour}
-                  :{currentTime && currentTime.minute}{" "}
+                  :
+                  {currentTime && currentTime.minute < 10
+                    ? "0" + currentTime && currentTime.minute
+                    : currentTime && currentTime.minute}{" "}
                   {currentTime && Number(currentTime.hour) > 12 ? "PM" : "AM"}
                 </Text>
               </Flex>
@@ -66,9 +67,9 @@ export default function CurrentWeather() {
                   }
                   ml={-4}
                 />
-                <Text fontSize="6xl">{`${
-                  current && Math.round(current.main.temp)
-                }°${unitMode === "imperial" ? "F" : "C"}`}</Text>
+                <Text fontSize="6xl">{`${Math.round(current.main.temp)}°${
+                  unitMode === "imperial" ? "F" : "C"
+                }`}</Text>
               </Flex>
             </VStack>
 
@@ -77,15 +78,23 @@ export default function CurrentWeather() {
               alignSelf="stretch"
               fontWeight="light"
             >
-              <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
-                current && current.weather[0].main
-              }`}</Text>
-              <Text m="0 !important" fontSize="2xl" opacity="0.9">{`${
-                current && Math.round(current.main.temp_max)
-              }° / ${Math.round(current && current.main.temp_min)}°`}</Text>
-              <Text m="0 !important" fontSize="2xl" opacity="0.9">
+              <Text
+                m="0 !important"
+                fontSize="2xl"
+                opacity="0.9"
+                height="100%"
+              >{`${current.weather[0].main}`}</Text>
+              <Text
+                m="0 !important"
+                fontSize="2xl"
+                opacity="0.9"
+                height="100%"
+              >{`${Math.round(current.main.temp_max)}° / ${Math.round(
+                current.main.temp_min
+              )}°`}</Text>
+              <Text m="0 !important" fontSize="2xl" opacity="0.9" height="100%">
                 Feels like{" "}
-                {`${current && Math.round(current.main.feels_like)}°
+                {`${Math.round(current.main.feels_like)}°
       `}
               </Text>
             </VStack>
