@@ -16,7 +16,7 @@ export default function Home() {
         summary="Weather webapp"
       />
 
-      <Box as="main" bg="gray.800">
+      <Box as="main" bg="gray.800" mb={5}>
         <Container maxW="container.xl">
           <LocationForm />
           <Flex
