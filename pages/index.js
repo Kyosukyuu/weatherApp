@@ -1,6 +1,8 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
 import CurrentInfo from "../components/CurrentInfo";
+import CurrentInfo2 from "../components/CurrentInfo2";
 import CurrentWeather from "../components/CurrentWeather";
+import ForecastWeather from "../components/ForecastWeather";
 import LocationForm from "../components/LocationForm";
 import PageHead from "../components/PageHead";
 
@@ -23,9 +25,12 @@ export default function Home() {
             gridGap={5}
             alignItems="flex-start"
             direction={{ base: "column", sm: "column", md: "row" }}
+            flexWrap="wrap"
           >
             <CurrentWeather />
             <CurrentInfo />
+            <ForecastWeather />
+            <CurrentInfo2 />
           </Flex>
         </Container>
       </Box>

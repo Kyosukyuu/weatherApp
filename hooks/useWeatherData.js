@@ -27,7 +27,7 @@ export default function useWeatherData() {
         `https://api.openweathermap.org/data/2.5/onecall?lat=${current.coord.lat}&lon=${current.coord.lon}&appid=${process.env.NEXT_PUBLIC_API_KEY}&units=${unitMode}`,
       fetcher
     );
-    console.log(current);
+
     return { current, currentError, forecast, forecastError };
   }
   return {};

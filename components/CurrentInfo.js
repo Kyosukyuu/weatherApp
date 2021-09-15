@@ -1,4 +1,4 @@
-import { Box, VStack, StackDivider, Flex } from "@chakra-ui/react";
+import { Box, VStack, StackDivider } from "@chakra-ui/react";
 import useWeatherData from "../hooks/useWeatherData";
 import { MdImportExport } from "react-icons/md";
 import { WiHumidity, WiStrongWind } from "react-icons/wi";
