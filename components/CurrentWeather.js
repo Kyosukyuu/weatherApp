@@ -35,17 +35,19 @@ export default function CurrentWeather() {
           w="100%"
           flex="1"
         >
-          <Flex justifyContent="space-between" flexWrap="wrap">
+          <Flex justifyContent="space-between">
             <VStack alignItems="flex-start">
-              <Flex alignItems="center">
-                <Flex></Flex>
-                <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
-                <Heading fontSize="4xl">
-                  {`${current && current.name}, ${
-                    current && current.sys.country
-                  }`}
-                </Heading>
-                <Text opacity="0.7" fontWeight="light">
+              <Flex direction="column">
+                <Flex alignItems="center">
+                  <Icon as={MdLocationOn} fontSize={30} mr={1} mt={1} />
+                  <Heading fontSize="4xl">
+                    {`${current && current.name}, ${
+                      current && current.sys.country
+                    }`}
+                  </Heading>
+                </Flex>
+
+                <Text opacity="0.7" fontWeight="light" ml={1}>
                   {currentTime && currentTime.weekdayShort},{" "}
                   {currentTime && currentTime.monthLong}{" "}
                   {currentTime && currentTime.day}{" "}
@@ -55,7 +57,6 @@ export default function CurrentWeather() {
                   :{currentTime && currentTime.minute}{" "}
                   {currentTime && Number(currentTime.hour) > 12 ? "PM" : "AM"}
                 </Text>
-                {console.log(currentTime)}
               </Flex>
               <Flex m="0 !important">
                 <Image

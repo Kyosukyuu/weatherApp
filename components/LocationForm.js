@@ -16,10 +16,13 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { WeatherContext } from "../context/WeatherContext";
 import { MdSearch } from "react-icons/md";
+import useMediaQueryBool from "../hooks/useMediaQueryBool";
 
 export default function LocationForm() {
   const { setLocation, setUnitMode } = useContext(WeatherContext);
   const { register, handleSubmit, reset } = useForm();
+
+  const isMd = useMediaQueryBool("min-width: 48em");
 
   const onSubmit = (data) => {
     setLocation(data.location);
@@ -31,7 +34,12 @@ export default function LocationForm() {
       <FormControl id="location">
         <FormLabel>City</FormLabel>
         <Flex>
-          <Input type="text" {...register("location")} borderRightRadius="0" />
+          <Input
+            type="text"
+            {...register("location")}
+            borderRightRadius="0"
+            borderRightStyle="none"
+          />
           <RadioGroup
             defaultValue="imperial"
             name="units"
@@ -68,8 +76,10 @@ export default function LocationForm() {
             borderLeftRadius="0"
             rightIcon={<Icon as={MdSearch} fontSize={23} />}
             width="200px"
+            title="Search City"
+            aria-label="Search City"
           >
-            Search
+            {isMd ? "Search" : ""}
           </Button>
         </Flex>
 
