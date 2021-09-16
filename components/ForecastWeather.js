@@ -1,13 +1,16 @@
 import useWeatherData from "../hooks/useWeatherData";
 import { Box, Flex, Text, Center, Image, Heading } from "@chakra-ui/react";
 import { DateTime } from "luxon";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
 
 export default function ForecastWeather() {
   const { forecast } = useWeatherData();
   return (
     <>
       {forecast && (
-        <Box
+        <MotionBox
           as="section"
           color="white"
           bg="gray.700"
@@ -16,6 +19,8 @@ export default function ForecastWeather() {
           p={4}
           w="100%"
           flex="1 1 40%"
+          initial={{ opacity: 0, top: -5 }}
+          animate={{ opacity: 1, top: 0, transition: { delay: 0.1 * 2 } }}
         >
           <Heading fontSize="4xl" textAlign="center" mb={4}>
             Hourly
@@ -48,7 +53,7 @@ export default function ForecastWeather() {
               );
             })}
           </Center>
-        </Box>
+        </MotionBox>
       )}
     </>
   );

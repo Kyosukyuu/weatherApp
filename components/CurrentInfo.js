@@ -5,8 +5,9 @@ import { WiHumidity, WiStrongWind } from "react-icons/wi";
 import CurrentInfoItem from "./CurrentInfoItem";
 import { useContext } from "react";
 import { WeatherContext } from "../context/WeatherContext";
+import { motion } from "framer-motion";
 
-const infoObj = {};
+const MotionBox = motion(Box);
 
 export default function CurrentInfo() {
   const { unitMode } = useContext(WeatherContext);
@@ -15,15 +16,17 @@ export default function CurrentInfo() {
   return (
     <>
       {current && (
-        <Box
+        <MotionBox
           as="section"
           rounded="base"
           boxShadow="lg"
           color="white"
           bg="gray.700"
-          flex="0.5 1 20%"
           w="100%"
           p={4}
+          flex="0.5 1 20%"
+          initial={{ opacity: 0, top: -5 }}
+          animate={{ opacity: 1, top: 0, transition: { delay: 0.1 * 3 } }}
         >
           <VStack divider={<StackDivider borderColor="gray.200" as="hr" />}>
             <CurrentInfoItem
@@ -48,7 +51,7 @@ export default function CurrentInfo() {
               }`}
             />
           </VStack>
-        </Box>
+        </MotionBox>
       )}
     </>
   );

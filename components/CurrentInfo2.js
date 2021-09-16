@@ -4,14 +4,17 @@ import CurrentInfoItem from "./CurrentInfoItem";
 import { MdInvertColors, MdWbSunny } from "react-icons/md";
 import { WiSunrise, WiSunset } from "react-icons/wi";
 import { DateTime } from "luxon";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
 
 export default function CurrentInfo2() {
   const { forecast } = useWeatherData();
-  console.log(forecast);
+
   return (
     <>
       {forecast && (
-        <Box
+        <MotionBox
           as="section"
           color="white"
           bg="gray.700"
@@ -20,6 +23,8 @@ export default function CurrentInfo2() {
           p={4}
           w="100%"
           flex="0.5 1 20%"
+          initial={{ opacity: 0, top: -5 }}
+          animate={{ opacity: 1, top: 0, transition: { delay: 0.1 * 4 } }}
         >
           <VStack divider={<StackDivider borderColor="gray.200" as="hr" />}>
             <CurrentInfoItem
@@ -71,7 +76,7 @@ export default function CurrentInfo2() {
               }`}
             />
           </VStack>
-        </Box>
+        </MotionBox>
       )}
     </>
   );

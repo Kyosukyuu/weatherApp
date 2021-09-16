@@ -12,6 +12,9 @@ import useWeatherData from "../hooks/useWeatherData";
 import { useContext, useState, useEffect } from "react";
 import { WeatherContext } from "../context/WeatherContext";
 import { DateTime } from "luxon";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
 
 export default function CurrentWeather() {
   const { unitMode } = useContext(WeatherContext);
@@ -25,7 +28,7 @@ export default function CurrentWeather() {
   return (
     <>
       {current && current.cod !== "404" && (
-        <Box
+        <MotionBox
           as="section"
           color="white"
           bg="gray.700"
@@ -34,6 +37,8 @@ export default function CurrentWeather() {
           p={4}
           w="100%"
           flex="1 1 40%"
+          initial={{ opacity: 0, top: -5 }}
+          animate={{ opacity: 1, top: 0, transition: { delay: 0.1 } }}
         >
           <Flex justifyContent="space-between">
             <VStack alignItems="flex-start">
@@ -99,7 +104,7 @@ export default function CurrentWeather() {
               </Text>
             </VStack>
           </Flex>
-        </Box>
+        </MotionBox>
       )}
     </>
   );
